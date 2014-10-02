@@ -6,13 +6,13 @@
 //  Copyright (c) 2014 SHoogland. All rights reserved.
 //
 
-#import "ViewController.h"
+#import "NavigationController.h"
 
-@interface ViewController ()
+@interface NavigationController ()
 
 @end
 
-@implementation ViewController
+@implementation NavigationController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

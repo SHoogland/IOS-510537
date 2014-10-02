@@ -1,0 +1,3 @@
+language: objective-c
+xcode_project: IOS-510537.xcodeproj # path to your xcodeproj folder
+xcode_scheme: IOS-510537

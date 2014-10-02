@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  NavigationController.h
 //  IOS-510537
 //
 //  Created by Stephan Hoogland on 02/10/14.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
+@interface NavigationController : UINavigationController
 
 
 @end
