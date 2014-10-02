@@ -5,6 +5,7 @@ source 'https://github.com/CocoaPods/Specs.git'
 
 target "IOS-510537" do
 	pod "AFNetworking"
+	pod "SVPullToRefresh"
 end
 
 target "IOS-510537Tests" do

@@ -7,8 +7,16 @@
 //
 
 #import "TableViewController.h"
+#import "TableViewCell.h"
+#import "DetailsViewController.h"
+#import "AFNetworking.h"
+#import "UIImageView+AFNetworking.h"
+#import "SVPullToRefresh/UIScrollView+SVInfiniteScrolling.h"
+#import "SVPullToRefresh/UIScrollView+SVPullToRefresh.h"
 
 @interface TableViewController ()
+
+@property (strong, nonatomic) NSMutableArray *apiArrayFromAFNetworking;
 
 @end
 
@@ -16,13 +24,23 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self makeAPIRequests];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
+    self.tableView.contentInset = UIEdgeInsetsMake(70.0f, 0.0f, 0.0f, 0.0f);
     
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    __weak TableViewController *weakSelf = self;
+    
+    [self.tableView addPullToRefreshWithActionHandler:^{
+        [weakSelf.tableView.pullToRefreshView startAnimating];
+        [weakSelf makeAPIRequests];
+    }];
+    
+    [self.tableView addInfiniteScrollingWithActionHandler:^{
+        [weakSelf.tableView.infiniteScrollingView startAnimating];
+        [weakSelf addAPIRequests];
+    }];
 }
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -32,69 +50,113 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 0;
+    return [self.apiArrayFromAFNetworking count];
 }
 
-/*
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
     
-    // Configure the cell...
+    static NSString *CellIdentifier = @"MessageCell";
+    TableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
+    //get the messages from the NSMutableArray
+    NSDictionary *tempDictionary= [self.apiArrayFromAFNetworking objectAtIndex:indexPath.row];
+    
+    //insert title field
+    cell.titleLabel.text = [tempDictionary objectForKey:@"Title"];
+    //insert text field
+    cell.apiTextLabel.text = [NSString stringWithFormat:@"%@",[tempDictionary objectForKey:@"Text"]];
+   
+    //check for an existing image and place this or a template in the view
+    id imageObj = [tempDictionary objectForKey:@"ImageUrl"];
+    if([imageObj isKindOfClass:[NSString class]] ){
+        
+        NSURL *url = [[NSURL alloc] initWithString:imageObj];
+        [cell.imagePreview setImageWithURL: url];
+        
+    } else {
+        
+        NSURL* url=[[NSURL alloc] initWithString:@"http://www.financiereguizot.com/wp-content/themes/twentyeleven/images/img-not-found_600_600.jpg"];
+        [cell.imagePreview setImageWithURL: url];
+    }
     return cell;
 }
-*/
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
+-(void)makeAPIRequests {
+    //Request url
+    NSURL *url = [NSURL URLWithString:@"http://wpinholland.azurewebsites.net/api/messages"];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    
+    //AFNetworking asynchronous url request
+    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+    operation.responseSerializer = [AFJSONResponseSerializer serializer];
+    
+    //Executed function after operation completion
+    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        self.apiArrayFromAFNetworking = [[NSMutableArray alloc] initWithArray:[responseObject objectForKey:@"Messages"]];
+        
+        [self.tableView reloadData];
+        [self.tableView.pullToRefreshView stopAnimating];
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+        //Log the error
+        NSLog(@"Request Failed: %@, %@", error, error.userInfo);
+        
+    }];
+    
+    [operation start];
+    
 }
-*/
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
+-(void)addAPIRequests {
+    //get the id from last object from current messages
+    NSString *finalIdString = [[self.apiArrayFromAFNetworking objectAtIndex:self.apiArrayFromAFNetworking.count-1] objectForKey:@"ID"];
+    //convert the id to an int
+    int finalId = finalIdString.intValue;
+    
+    //use the id to retrieve the next 20 messages from the API
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://wpinholland.azurewebsites.net/api/messages/%d", finalId]];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    
+    //AFNetworking asynchronous url request
+    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+    
+    operation.responseSerializer = [AFJSONResponseSerializer serializer];
+    
+    //Executed function after operation completion
+    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        [self.apiArrayFromAFNetworking addObjectsFromArray:[responseObject objectForKey:@"Messages"]];
+        
+        [self.tableView reloadData];
+        [self.tableView.infiniteScrollingView stopAnimating];
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+        NSLog(@"Request Failed: %@, %@", error, error.userInfo);
+        
+    }];
+    
+    [operation start];
+    
 }
-*/
 
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
+#pragma mark - Prepare For Segue
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if([segue.identifier isEqual: @"DetailsSegue"]){
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        DetailsViewController *detailViewController = (DetailsViewController *)segue.destinationViewController;
+        detailViewController.messageDetail = [self.apiArrayFromAFNetworking objectAtIndex:indexPath.row];
+    }
 }
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

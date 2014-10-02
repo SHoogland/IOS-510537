@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		90DEF6A6655F0C4F8A292602 /* libPods-IOS-510537.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BD7F478BD2AC9789B215DF6E /* libPods-IOS-510537.a */; };
+		D40E530719DDB71200FB6793 /* DetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D40E530619DDB71200FB6793 /* DetailsViewController.m */; };
+		D40E530A19DDC76600FB6793 /* AddViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D40E530919DDC76600FB6793 /* AddViewController.m */; };
 		D4FB978619DD81B300743BBE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D4FB978519DD81B300743BBE /* main.m */; };
 		D4FB978919DD81B300743BBE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D4FB978819DD81B300743BBE /* AppDelegate.m */; };
 		D4FB978C19DD81B300743BBE /* NavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4FB978B19DD81B300743BBE /* NavigationController.m */; };
@@ -16,6 +18,7 @@
 		D4FB979419DD81B300743BBE /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4FB979219DD81B300743BBE /* LaunchScreen.xib */; };
 		D4FB97A019DD81B300743BBE /* IOS_510537Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = D4FB979F19DD81B300743BBE /* IOS_510537Tests.m */; };
 		D4FB97AB19DD859700743BBE /* TableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4FB97AA19DD859700743BBE /* TableViewController.m */; };
+		D4FB97AE19DDA00B00743BBE /* TableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D4FB97AD19DDA00B00743BBE /* TableViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,6 +35,10 @@
 		161ACBC2F6B0EF62175F22CC /* Pods-IOS-510537.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IOS-510537.release.xcconfig"; path = "Pods/Target Support Files/Pods-IOS-510537/Pods-IOS-510537.release.xcconfig"; sourceTree = "<group>"; };
 		36C201602AED7AD211B75C6C /* Pods-IOS-510537.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IOS-510537.debug.xcconfig"; path = "Pods/Target Support Files/Pods-IOS-510537/Pods-IOS-510537.debug.xcconfig"; sourceTree = "<group>"; };
 		BD7F478BD2AC9789B215DF6E /* libPods-IOS-510537.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-IOS-510537.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D40E530519DDB71200FB6793 /* DetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailsViewController.h; sourceTree = "<group>"; };
+		D40E530619DDB71200FB6793 /* DetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailsViewController.m; sourceTree = "<group>"; };
+		D40E530819DDC76600FB6793 /* AddViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddViewController.h; sourceTree = "<group>"; };
+		D40E530919DDC76600FB6793 /* AddViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddViewController.m; sourceTree = "<group>"; };
 		D4FB978019DD81B300743BBE /* IOS-510537.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "IOS-510537.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4FB978419DD81B300743BBE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D4FB978519DD81B300743BBE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -47,6 +54,8 @@
 		D4FB979F19DD81B300743BBE /* IOS_510537Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IOS_510537Tests.m; sourceTree = "<group>"; };
 		D4FB97A919DD859700743BBE /* TableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewController.h; sourceTree = "<group>"; };
 		D4FB97AA19DD859700743BBE /* TableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewController.m; sourceTree = "<group>"; };
+		D4FB97AC19DDA00B00743BBE /* TableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewCell.h; sourceTree = "<group>"; };
+		D4FB97AD19DDA00B00743BBE /* TableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,7 +123,13 @@
 				D4FB978B19DD81B300743BBE /* NavigationController.m */,
 				D4FB97A919DD859700743BBE /* TableViewController.h */,
 				D4FB97AA19DD859700743BBE /* TableViewController.m */,
+				D40E530519DDB71200FB6793 /* DetailsViewController.h */,
+				D40E530619DDB71200FB6793 /* DetailsViewController.m */,
 				D4FB978D19DD81B300743BBE /* Main.storyboard */,
+				D40E530819DDC76600FB6793 /* AddViewController.h */,
+				D40E530919DDC76600FB6793 /* AddViewController.m */,
+				D4FB97AC19DDA00B00743BBE /* TableViewCell.h */,
+				D4FB97AD19DDA00B00743BBE /* TableViewCell.m */,
 				D4FB979019DD81B300743BBE /* Images.xcassets */,
 				D4FB979219DD81B300743BBE /* LaunchScreen.xib */,
 				D4FB978319DD81B300743BBE /* Supporting Files */,
@@ -286,6 +301,9 @@
 				D4FB978C19DD81B300743BBE /* NavigationController.m in Sources */,
 				D4FB978919DD81B300743BBE /* AppDelegate.m in Sources */,
 				D4FB978619DD81B300743BBE /* main.m in Sources */,
+				D40E530A19DDC76600FB6793 /* AddViewController.m in Sources */,
+				D40E530719DDB71200FB6793 /* DetailsViewController.m in Sources */,
+				D4FB97AE19DDA00B00743BBE /* TableViewCell.m in Sources */,
 				D4FB97AB19DD859700743BBE /* TableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
