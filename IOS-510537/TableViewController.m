@@ -22,6 +22,11 @@
 
 @implementation TableViewController
 
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [self makeAPIRequests];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self makeAPIRequests];
@@ -71,7 +76,9 @@
     cell.titleLabel.text = [tempDictionary objectForKey:@"Title"];
     //insert text field
     cell.apiTextLabel.text = [NSString stringWithFormat:@"%@",[tempDictionary objectForKey:@"Text"]];
-   
+    
+    cell.imagePreview.contentMode = UIViewContentModeScaleAspectFit;
+    
     //check for an existing image and place this or a template in the view
     id imageObj = [tempDictionary objectForKey:@"ImageUrl"];
     if([imageObj isKindOfClass:[NSString class]] ){
@@ -81,9 +88,20 @@
         
     } else {
         
-        NSURL* url=[[NSURL alloc] initWithString:@"http://www.financiereguizot.com/wp-content/themes/twentyeleven/images/img-not-found_600_600.jpg"];
+        NSURL* url=[[NSURL alloc] initWithString:@"http://www.silvermorgandollar.com/images/no_image.gif"];
         [cell.imagePreview setImageWithURL: url];
     }
+    
+    
+    id time = [tempDictionary objectForKey:@"Timestamp"];
+    double unixTimeStamp =[time doubleValue];
+    NSTimeInterval _interval=unixTimeStamp;
+    NSDate *date = [NSDate dateWithTimeIntervalSince1970:_interval];
+    NSDateFormatter *_formatter=[[NSDateFormatter alloc]init];
+    [_formatter setLocale:[NSLocale currentLocale]];
+    [_formatter setDateFormat:@"dd.MM.yyyy HH:mm:ss"];
+    cell.timeLabel.text = [_formatter stringFromDate:date];
+    
     return cell;
 }
 
@@ -158,5 +176,6 @@
         detailViewController.messageDetail = [self.apiArrayFromAFNetworking objectAtIndex:indexPath.row];
     }
 }
+
 
 @end

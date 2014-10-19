@@ -13,7 +13,7 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *detailTitleLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *detailImageView;
-@property (weak, nonatomic) IBOutlet UILabel *detailTextLabel;
+@property (weak, nonatomic) IBOutlet UITextView *detailTextView;
 @property (weak, nonatomic) IBOutlet UILabel *detailTimeLabel;
 
 @end
@@ -22,6 +22,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.detailImageView.contentMode = UIViewContentModeScaleAspectFit;
 
     self.detailTitleLabel.text = [self.messageDetail objectForKey:@"Title"];
     
@@ -34,16 +35,20 @@
         
     } else {
         
-        NSURL* url=[[NSURL alloc] initWithString:@"http://www.financiereguizot.com/wp-content/themes/twentyeleven/images/img-not-found_600_600.jpg"];
+        NSURL* url=[[NSURL alloc] initWithString:@"http://www.silvermorgandollar.com/images/no_image.gif"];
         [self.detailImageView setImageWithURL: url];
     }
     
-    self.detailTextLabel.text = [self.messageDetail objectForKey:@"Text"];
+    self.detailTextView.text = [self.messageDetail objectForKey:@"Text"];
+    
     id time = [self.messageDetail objectForKey:@"Timestamp"];
-    if ([time isKindOfClass:[NSString class]]) {
-        NSString *timeString = [[NSString alloc] initWithString:time];
-        self.detailTimeLabel.text = timeString;
-    }
+    double unixTimeStamp =[time doubleValue];
+    NSTimeInterval _interval=unixTimeStamp;
+    NSDate *date = [NSDate dateWithTimeIntervalSince1970:_interval];
+    NSDateFormatter *_formatter=[[NSDateFormatter alloc]init];
+    [_formatter setLocale:[NSLocale currentLocale]];
+    [_formatter setDateFormat:@"dd.MM.yyyy HH:mm:ss"];
+    self.detailTimeLabel.text = [_formatter stringFromDate:date];
 
 }
 
@@ -51,5 +56,6 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 
 @end

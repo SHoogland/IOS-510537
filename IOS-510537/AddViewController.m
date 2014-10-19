@@ -6,6 +6,7 @@
 //  Copyright (c) 2014 SHoogland. All rights reserved.
 //
 
+#import "TableViewController.h"
 #import "AddViewController.h"
 #import "AFNetworking.h"
 
@@ -49,6 +50,8 @@
     [self dismissKeyboard];
     [_uploadIndicator setHidden:NO];
     [_uploadIndicator startAnimating];
+    self.navigationItem.hidesBackButton = YES;
+
     
     if(self.selectedImage.image){
         AFHTTPRequestOperationManager *imageManager = [[AFHTTPRequestOperationManager alloc] initWithBaseURL:[NSURL URLWithString:@"http://wpinholland.azurewebsites.net/"]];
@@ -67,6 +70,8 @@
             [_uploadButton setEnabled:YES];
             [_uploadIndicator stopAnimating];
             [_uploadIndicator setHidden:YES];
+            self.navigationItem.hidesBackButton = NO;
+
 
             NSLog(@"Error: %@ ***** %@", operation.responseString, error);
             
@@ -95,7 +100,16 @@
         params = @{@"Title": title,
                    @"Text": text};
     }
-    
+    if ([title isEqualToString:@""] || [text isEqualToString:@""]){
+        [self emptyFieldsShowNotification];
+        
+        [_uploadButton setEnabled:YES];
+        [_uploadIndicator stopAnimating];
+        [_uploadIndicator setHidden:YES];
+        self.navigationItem.hidesBackButton = NO;
+
+    }
+    else {
     [manager POST:@"http://wpinholland.azurewebsites.net/api/ios" parameters:params
           success:^(AFHTTPRequestOperation *operation, id responseObject) {
               
@@ -104,6 +118,8 @@
               [_uploadButton setEnabled:YES];
               [_uploadIndicator stopAnimating];
               [_uploadIndicator setHidden:YES];
+              self.navigationItem.hidesBackButton = NO;
+
               
               self.titleTextField.text = @"";
               self.textTextField.text = @"";
@@ -116,11 +132,13 @@
               [_uploadButton setEnabled:YES];
               [_uploadIndicator stopAnimating];
               [_uploadIndicator setHidden:YES];
+              self.navigationItem.hidesBackButton = NO;
+
               
               NSLog(@"Error: %@", error);
               
           }];
-
+    }
 }
 
 //show notification functions
@@ -130,6 +148,10 @@
 }
 - (void)errorHappenedShowNotification {
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Something went wrong" message:@"Do you have an internet connection?" delegate:nil  cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    [alert show];
+}
+- (void)emptyFieldsShowNotification {
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Title and Label cannot be empty!" message:@"Do both fields contain text?" delegate:nil  cancelButtonTitle:@"OK" otherButtonTitles:nil];
     [alert show];
 }
 
@@ -152,6 +174,8 @@
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
     [picker dismissViewControllerAnimated:YES completion:NULL];
 }
+
+
 
 /*
 #pragma mark - Navigation

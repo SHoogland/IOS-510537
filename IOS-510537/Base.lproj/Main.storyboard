@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="14A386b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Jta-i2-CQc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="14A388b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Jta-i2-CQc">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
     </dependencies>
@@ -33,7 +33,7 @@
                                                 <rect key="frame" x="144" y="17" width="194" height="21"/>
                                             </variation>
                                             <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                                <rect key="frame" x="116" y="17" width="194" height="21"/>
+                                                <rect key="frame" x="116" y="9" width="194" height="21"/>
                                             </variation>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j5e-HK-diO">
@@ -45,13 +45,23 @@
                                                 <rect key="frame" x="144" y="46" width="194" height="21"/>
                                             </variation>
                                             <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                                <rect key="frame" x="116" y="46" width="194" height="21"/>
+                                                <rect key="frame" x="116" y="31" width="194" height="21"/>
+                                            </variation>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fQ7-wr-R2W">
+                                            <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                            <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                                <rect key="frame" x="116" y="53" width="243" height="21"/>
                                             </variation>
                                         </label>
                                     </subviews>
                                     <variation key="default">
                                         <mask key="subviews">
                                             <exclude reference="j5e-HK-diO"/>
+                                            <exclude reference="fQ7-wr-R2W"/>
                                         </mask>
                                     </variation>
                                     <variation key="widthClass=compact">
@@ -59,10 +69,16 @@
                                             <include reference="j5e-HK-diO"/>
                                         </mask>
                                     </variation>
+                                    <variation key="heightClass=regular-widthClass=compact">
+                                        <mask key="subviews">
+                                            <include reference="fQ7-wr-R2W"/>
+                                        </mask>
+                                    </variation>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="apiTextLabel" destination="j5e-HK-diO" id="1pI-Ds-C3F"/>
                                     <outlet property="imagePreview" destination="YLA-I1-udw" id="UzV-ad-v8M"/>
+                                    <outlet property="timeLabel" destination="fQ7-wr-R2W" id="qdG-cW-Rq2"/>
                                     <outlet property="titleLabel" destination="yW1-Ss-xWx" id="S8D-LH-j9Y"/>
                                     <segue destination="KTq-zH-o73" kind="show" identifier="DetailsSegue" id="MiM-v2-Nr2"/>
                                 </connections>
@@ -83,7 +99,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pf2-3J-qNn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-97.5" y="356.25"/>
+            <point key="canvasLocation" x="-97.5" y="354.75"/>
         </scene>
         <!--Add View Controller-->
         <scene sceneID="GH3-W1-CHC">
@@ -216,52 +232,53 @@
                                     <rect key="frame" x="16" y="72" width="368" height="49"/>
                                 </variation>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ady-SS-aFM">
-                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="16" y="324" width="42" height="21"/>
-                                </variation>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q4F-5A-9SN">
-                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="16" y="469" width="42" height="21"/>
-                                </variation>
-                            </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jUR-ly-4qF">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
                                     <rect key="frame" x="16" y="129" width="278" height="177"/>
                                 </variation>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q4F-5A-9SN">
+                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="16" y="314" width="278" height="21"/>
+                                </variation>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qoC-Jj-Iqj">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="16" y="343" width="278" height="442"/>
+                                </variation>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <variation key="default">
                             <mask key="subviews">
                                 <exclude reference="dS3-Vl-sO1"/>
-                                <exclude reference="Ady-SS-aFM"/>
-                                <exclude reference="Q4F-5A-9SN"/>
                                 <exclude reference="jUR-ly-4qF"/>
+                                <exclude reference="Q4F-5A-9SN"/>
+                                <exclude reference="qoC-Jj-Iqj"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
                             <mask key="subviews">
                                 <include reference="dS3-Vl-sO1"/>
-                                <include reference="Ady-SS-aFM"/>
-                                <include reference="Q4F-5A-9SN"/>
                                 <include reference="jUR-ly-4qF"/>
+                                <include reference="Q4F-5A-9SN"/>
+                                <include reference="qoC-Jj-Iqj"/>
                             </mask>
                         </variation>
                     </view>
                     <connections>
                         <outlet property="detailImageView" destination="jUR-ly-4qF" id="ChT-T7-PBZ"/>
-                        <outlet property="detailTextLabel" destination="Ady-SS-aFM" id="WOK-WV-jEX"/>
+                        <outlet property="detailTextView" destination="qoC-Jj-Iqj" id="6ID-bP-T5N"/>
                         <outlet property="detailTimeLabel" destination="Q4F-5A-9SN" id="HfO-Fc-6Sc"/>
                         <outlet property="detailTitleLabel" destination="dS3-Vl-sO1" id="DE6-v7-bTG"/>
                     </connections>

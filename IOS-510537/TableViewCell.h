@@ -13,5 +13,6 @@
 @property (weak, nonatomic) IBOutlet UIImageView *imagePreview;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *apiTextLabel;
+@property (weak, nonatomic) IBOutlet UILabel *timeLabel;
 
 @end

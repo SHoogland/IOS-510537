@@ -6,6 +6,8 @@
 //  Copyright (c) 2014 SHoogland. All rights reserved.
 //
 
+#import "TableViewController.h"
+#import "AddViewController.h"
 #import "NavigationController.h"
 
 @interface NavigationController ()
@@ -23,5 +25,6 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 
 @end
