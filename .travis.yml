@@ -1,5 +1,5 @@
 osx_image: xcode61
 language: objective-c
-xcode_project: IOS-510537.xcworkspace
+xcode_workspace: IOS-510537.xcworkspace
 xcode_scheme: IOS-510537
 xcode_sdk: iphonesimulator8.1
