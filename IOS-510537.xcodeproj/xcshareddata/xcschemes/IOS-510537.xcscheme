@@ -14,6 +14,34 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
+               BlueprintIdentifier = "FF39B91B0BA4AEC47FB21F1F"
+               BuildableName = "libPods-IOS-510537-AFNetworking.a"
+               BlueprintName = "Pods-IOS-510537-AFNetworking"
+               ReferencedContainer = "container:Pods/Pods.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "FE972F46303A1FB6ED03455C"
+               BuildableName = "libPods-IOS-510537-SVPullToRefresh.a"
+               BlueprintName = "Pods-IOS-510537-SVPullToRefresh"
+               ReferencedContainer = "container:Pods/Pods.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
                BlueprintIdentifier = "D4FB977F19DD81B300743BBE"
                BuildableName = "IOS-510537.app"
                BlueprintName = "IOS-510537"
